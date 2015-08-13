@@ -7,6 +7,11 @@ body {
 .row {
   max-width: 100% !important;
 }
+.container {
+    float:none;
+    max-width:1170px;
+    margin:0 auto;
+}    
 
 
 /* Navigation */
@@ -26,6 +31,27 @@ body {
     padding:30px 25px;
     display:block;
     color:#fff;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    overflow: hidden;
+}
+#nav ul li a:hover {
+    /* display: inline-block; */
+    /* vertical-align: middle; */
+    margin: .4em;
+    padding: 1em;
+    cursor: pointer;
+    background: #e1e1e1;
+    text-decoration: none;
+    color: #666;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 #nav ul li:nth-child(3) a {
     padding:0 25px !important;
