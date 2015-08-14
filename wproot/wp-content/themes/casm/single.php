@@ -3,49 +3,46 @@
  * The template for displaying all single posts and attachments
  *
  * @package WordPress
- * @subpackage FoundationPress
- * @since FoundationPress 1.0.0
+ * @subpackage Twenty_Fifteen
+ * @since Twenty Fifteen 1.0
  */
 
 get_header(); ?>
 
-<div class="row">
-	<div class="small-12 large-8 columns" role="main">
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
 
-	<?php do_action( 'foundationpress_before_content' ); ?>
+		<?php
+		// Start the loop.
+		while ( have_posts() ) : the_post();
 
-	<?php while ( have_posts() ) : the_post(); ?>
-		<article <?php post_class() ?> id="post-<?php the_ID(); ?>">
-			<header>
-				<h1 class="entry-title"><?php the_title(); ?></h1>
-				<?php foundationpress_entry_meta(); ?>
-			</header>
-			<?php do_action( 'foundationpress_post_before_entry_content' ); ?>
-			<div class="entry-content">
+			/*
+			 * Include the post format-specific template for the content. If you want to
+			 * use this in a child theme, then include a file called called content-___.php
+			 * (where ___ is the post format) and that will be used instead.
+			 */
+			get_template_part( 'content', get_post_format() );
 
-			<?php if ( has_post_thumbnail() ) : ?>
-				<div class="row">
-					<div class="column">
-						<?php the_post_thumbnail( '', array('class' => 'th') ); ?>
-					</div>
-				</div>
-			<?php endif; ?>
+			// If comments are open or we have at least one comment, load up the comment template.
+			if ( comments_open() || get_comments_number() ) :
+				comments_template();
+			endif;
 
-			<?php the_content(); ?>
-			</div>
-			<footer>
-				<?php wp_link_pages( array('before' => '<nav id="page-nav"><p>' . __( 'Pages:', 'foundationpress' ), 'after' => '</p></nav>' ) ); ?>
-				<p><?php the_tags(); ?></p>
-			</footer>
-			<?php do_action( 'foundationpress_post_before_comments' ); ?>
-			<?php comments_template(); ?>
-			<?php do_action( 'foundationpress_post_after_comments' ); ?>
-		</article>
-	<?php endwhile;?>
+			// Previous/next post navigation.
+			the_post_navigation( array(
+				'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'twentyfifteen' ) . '</span> ' .
+					'<span class="screen-reader-text">' . __( 'Next post:', 'twentyfifteen' ) . '</span> ' .
+					'<span class="post-title">%title</span>',
+				'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous', 'twentyfifteen' ) . '</span> ' .
+					'<span class="screen-reader-text">' . __( 'Previous post:', 'twentyfifteen' ) . '</span> ' .
+					'<span class="post-title">%title</span>',
+			) );
 
-	<?php do_action( 'foundationpress_after_content' ); ?>
+		// End the loop.
+		endwhile;
+		?>
 
-	</div>
-	<?php get_sidebar(); ?>
-</div>
+		</main><!-- .site-main -->
+	</div><!-- .content-area -->
+
 <?php get_footer(); ?>

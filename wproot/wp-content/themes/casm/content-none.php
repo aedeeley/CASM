@@ -5,30 +5,33 @@
  * Learn more: {@link https://codex.wordpress.org/Template_Hierarchy}
  *
  * @package WordPress
- * @subpackage FoundationPress
- * @since FoundationPress 1.0.0
+ * @subpackage Twenty_Fifteen
+ * @since Twenty Fifteen 1.0
  */
-
 ?>
 
-<header class="page-header">
-	<h1 class="page-title"><?php _e( 'Nothing Found', 'foundationpress' ); ?></h1>
-</header>
+<section class="no-results not-found">
+	<header class="page-header">
+		<h1 class="page-title"><?php _e( 'Nothing Found', 'twentyfifteen' ); ?></h1>
+	</header><!-- .page-header -->
 
-<div class="page-content">
-	<?php if ( is_home() && current_user_can( 'publish_posts' ) ) : ?>
+	<div class="page-content">
 
-	<p><?php printf( __( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'foundationpress' ), admin_url( 'post-new.php' ) ); ?></p>
+		<?php if ( is_home() && current_user_can( 'publish_posts' ) ) : ?>
 
-	<?php elseif ( is_search() ) : ?>
+			<p><?php printf( __( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'twentyfifteen' ), esc_url( admin_url( 'post-new.php' ) ) ); ?></p>
 
-	<p><?php _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'foundationpress' ); ?></p>
-	<?php get_search_form(); ?>
+		<?php elseif ( is_search() ) : ?>
 
-	<?php else : ?>
+			<p><?php _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'twentyfifteen' ); ?></p>
+			<?php get_search_form(); ?>
 
-	<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'foundationpress' ); ?></p>
-	<?php get_search_form(); ?>
+		<?php else : ?>
 
-	<?php endif; ?>
-</div>
+			<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'twentyfifteen' ); ?></p>
+			<?php get_search_form(); ?>
+
+		<?php endif; ?>
+
+	</div><!-- .page-content -->
+</section><!-- .no-results -->

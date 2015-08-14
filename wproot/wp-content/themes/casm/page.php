@@ -7,39 +7,32 @@
  * other "pages" on your WordPress site will use a different template.
  *
  * @package WordPress
- * @subpackage FoundationPress
- * @since FoundationPress 1.0.0
+ * @subpackage Twenty_Fifteen
+ * @since Twenty Fifteen 1.0
  */
 
 get_header(); ?>
 
-<div class="row">
-	<div class="small-12 large-8 columns" role="main">
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
 
-	<?php do_action( 'foundationpress_before_content' ); ?>
+		<?php
+		// Start the loop.
+		while ( have_posts() ) : the_post();
 
-	<?php while ( have_posts() ) : the_post(); ?>
-		<article <?php post_class() ?> id="post-<?php the_ID(); ?>">
-			<header>
-				<h1 class="entry-title"><?php the_title(); ?></h1>
-			</header>
-			<?php do_action( 'foundationpress_page_before_entry_content' ); ?>
-			<div class="entry-content">
-				<?php the_content(); ?>
-			</div>
-			<footer>
-				<?php wp_link_pages( array('before' => '<nav id="page-nav"><p>' . __( 'Pages:', 'foundationpress' ), 'after' => '</p></nav>' ) ); ?>
-				<p><?php the_tags(); ?></p>
-			</footer>
-			<?php do_action( 'foundationpress_page_before_comments' ); ?>
-			<?php comments_template(); ?>
-			<?php do_action( 'foundationpress_page_after_comments' ); ?>
-		</article>
-	<?php endwhile;?>
+			// Include the page content template.
+			get_template_part( 'content', 'page' );
 
-	<?php do_action( 'foundationpress_after_content' ); ?>
+			// If comments are open or we have at least one comment, load up the comment template.
+			if ( comments_open() || get_comments_number() ) :
+				comments_template();
+			endif;
 
-	</div>
-	<?php get_sidebar(); ?>
-</div>
+		// End the loop.
+		endwhile;
+		?>
+
+		</main><!-- .site-main -->
+	</div><!-- .content-area -->
+
 <?php get_footer(); ?>

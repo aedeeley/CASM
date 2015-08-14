@@ -3,43 +3,51 @@
  * The template for displaying search results pages.
  *
  * @package WordPress
- * @subpackage FoundationPress
- * @since FoundationPress 1.0.0
+ * @subpackage Twenty_Fifteen
+ * @since Twenty Fifteen 1.0
  */
 
 get_header(); ?>
 
-<div class="row">
-	<div class="small-12 large-8 columns" role="main">
+	<section id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
 
-		<?php do_action( 'foundationpress_before_content' ); ?>
+		<?php if ( have_posts() ) : ?>
 
-		<h2><?php _e( 'Search Results for', 'foundationpress' ); ?> "<?php echo get_search_query(); ?>"</h2>
+			<header class="page-header">
+				<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'twentyfifteen' ), get_search_query() ); ?></h1>
+			</header><!-- .page-header -->
 
-	<?php if ( have_posts() ) : ?>
+			<?php
+			// Start the loop.
+			while ( have_posts() ) : the_post(); ?>
 
-		<?php while ( have_posts() ) : the_post(); ?>
-			<?php get_template_part( 'content', get_post_format() ); ?>
-		<?php endwhile; ?>
+				<?php
+				/*
+				 * Run the loop for the search to output the results.
+				 * If you want to overload this in a child theme then include a file
+				 * called content-search.php and that will be used instead.
+				 */
+				get_template_part( 'content', 'search' );
 
-		<?php else : ?>
-			<?php get_template_part( 'content', 'none' ); ?>
+			// End the loop.
+			endwhile;
 
-	<?php endif;?>
+			// Previous/next page navigation.
+			the_posts_pagination( array(
+				'prev_text'          => __( 'Previous page', 'twentyfifteen' ),
+				'next_text'          => __( 'Next page', 'twentyfifteen' ),
+				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentyfifteen' ) . ' </span>',
+			) );
 
-	<?php do_action( 'foundationpress_before_pagination' ); ?>
+		// If no content, include the "No posts found" template.
+		else :
+			get_template_part( 'content', 'none' );
 
-	<?php if ( function_exists( 'foundationpress_pagination' ) ) { foundationpress_pagination(); } else if ( is_paged() ) { ?>
+		endif;
+		?>
 
-		<nav id="post-nav">
-			<div class="post-previous"><?php next_posts_link( __( '&larr; Older posts', 'foundationpress' ) ); ?></div>
-			<div class="post-next"><?php previous_posts_link( __( 'Newer posts &rarr;', 'foundationpress' ) ); ?></div>
-		</nav>
-	<?php } ?>
+		</main><!-- .site-main -->
+	</section><!-- .content-area -->
 
-	<?php do_action( 'foundationpress_after_content' ); ?>
-
-	</div>
-	<?php get_sidebar(); ?>
-</div>
 <?php get_footer(); ?>

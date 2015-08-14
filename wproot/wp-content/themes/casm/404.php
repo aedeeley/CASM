@@ -3,33 +3,28 @@
  * The template for displaying 404 pages (not found)
  *
  * @package WordPress
- * @subpackage FoundationPress
- * @since FoundationPress 1.0.0
+ * @subpackage Twenty_Fifteen
+ * @since Twenty Fifteen 1.0
  */
 
 get_header(); ?>
 
-<div class="row">
-	<div class="small-12 large-8 columns" role="main">
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
 
-		<article <?php post_class() ?> id="post-<?php the_ID(); ?>">
-			<header>
-				<h1 class="entry-title"><?php _e( 'File Not Found', 'foundationpress' ); ?></h1>
-			</header>
-			<div class="entry-content">
-				<div class="error">
-					<p class="bottom"><?php _e( 'The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.', 'foundationpress' ); ?></p>
-				</div>
-				<p><?php _e( 'Please try the following:', 'foundationpress' ); ?></p>
-				<ul>
-					<li><?php _e( 'Check your spelling', 'foundationpress' ); ?></li>
-					<li><?php printf( __( 'Return to the <a href="%s">home page</a>', 'foundationpress' ), home_url() ); ?></li>
-					<li><?php _e( 'Click the <a href="javascript:history.back()">Back</a> button', 'foundationpress' ); ?></li>
-				</ul>
-			</div>
-		</article>
+			<section class="error-404 not-found">
+				<header class="page-header">
+					<h1 class="page-title"><?php _e( 'Oops! That page can&rsquo;t be found.', 'twentyfifteen' ); ?></h1>
+				</header><!-- .page-header -->
 
-	</div>
-	<?php get_sidebar(); ?>
-</div>
+				<div class="page-content">
+					<p><?php _e( 'It looks like nothing was found at this location. Maybe try a search?', 'twentyfifteen' ); ?></p>
+
+					<?php get_search_form(); ?>
+				</div><!-- .page-content -->
+			</section><!-- .error-404 -->
+
+		</main><!-- .site-main -->
+	</div><!-- .content-area -->
+
 <?php get_footer(); ?>
