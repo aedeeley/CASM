@@ -179,7 +179,7 @@ input[type=checkbox]:checked ~ #menu {
 
 .content {
     display: block;
-    padding: 55px 0 !important;
+    padding: 55px 0 0 0 !important;
 }
 
 .content h2 {
