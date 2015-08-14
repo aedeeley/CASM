@@ -10,9 +10,9 @@
  */
 ?>
 
-        
+      
+<?php if(is_home()) { ?>  
     <div class="row affiliates">
-        
           <a href="#" target="_blank"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/affil-waketech.jpg" alt="Affiliate" /></a>
           <a href="#" target="_blank"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/affil-ncworks.jpg" alt="Affiliate" /></a>
           <a href="#" target="_blank"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/affil-isg.jpg" alt="Affiliate" /></a>
@@ -21,6 +21,7 @@
           <div class="clear"></div>
       </div>
       </div>
+    <?php }; ?>
       
       
  <section id="footer">    

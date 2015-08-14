@@ -23,10 +23,12 @@
 </head>
 
 <body <?php body_class(); ?>>
-
-<section id="nav">
+<a href="#" class="mobile"><img src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="CASM logo" /></a>
+<section id="nav" role="navigation">
     <div class="row">
-        <ul>
+        <label for="show-menu" class="show-menu">Show Menu</label>
+        <input type="checkbox" id="show-menu" role="button">
+        <ul id="menu">
             <li><a href="#" class="hvr-underline-reveal">What is Cybersecurity?</a></li>  
             <li><a href="#" class="hvr-underline-reveal">Program Overview</a></li>
             <li id="logo"><a href="#"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/logo.png" alt="CASM Logo" /></a></li>  
@@ -37,6 +39,7 @@
       </div>
 </section>  
       
+<?php if(is_home()) { ?>
 <section id="slider">    
     <div class="row">
       <div class="large-12 columns">
@@ -44,4 +47,6 @@
       </div>
     </div>
 </section>  
+    
+    <?php }; ?>
       

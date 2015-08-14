@@ -77,6 +77,66 @@ body {
 .hvr-underline-reveal:before {
   background: #e3dc11 !important;
 }
+.mobile { 
+    display:none !important; 
+    width:100%;
+    height:85px;
+    background:#182f58 url(../img/nav-bg.jpg) repeat top left;
+    text-align:center;
+}
+
+/*Style 'show menu' label button and hide it by default*/
+.show-menu {
+    background:#182f58 url(../img/nav-bg.jpg) repeat top left;
+	text-align: center;
+	padding: 10px 0;
+	display: none;
+    cursor:pointer;
+    color:#e3dc11;
+    font-family: 'Titillium Web', sans-serif;
+    font-size:16pt;
+}
+
+/*Hide checkbox*/
+input[type=checkbox]{
+    display: none;
+}
+
+/*Show menu when invisible checkbox is checked*/
+input[type=checkbox]:checked ~ #menu{
+    display: block;
+}
+
+/*Responsive Styles*/
+
+@media screen and (max-width : 1024px   ){
+    /*Display 'show menu' link*/
+	.show-menu {
+		display:block !important;
+	}
+	/*Make dropdown links appear inline*/
+	ul {
+		position: static;
+		display: none;
+        width:100% !important;
+	}
+	/*Create vertical spacing*/
+	li {
+		margin-bottom: 1px;
+	}
+	/*Make all menu links full width*/
+	ul li, li a {
+		width: 100%;
+	}
+	ul li, li a {
+		text-align:center;
+	}
+#nav ul li:nth-child(3) a {
+    display:none;
+}    
+.mobile { display:block !important; }
+}
+
 
 /* Slider */
 
@@ -110,11 +170,10 @@ body {
 
 /* Affiliates */
 
-.affiliates {
-    margin:55px 0;
-}
 .affiliates img {
-    margin-left:60px;
+   padding-top:80px;
+    width:14%;
+    margin:0 5%;
 }
 
 /* Banner */
@@ -145,6 +204,45 @@ body {
     position:absolute;
     top:68%;
     left:15%;    
+}
+@media screen and (max-width:1280px){
+.banner h2 {
+    font-size:28pt;
+    left:10%;
+    top:10%;
+}
+.banner p {
+    font-size:14pt;
+    width:50%;  
+    left:10%;
+}
+.banner .button {
+    top:40%;
+    left:auto;
+    right:5%;   
+    display:table;
+}
+}
+@media screen and (max-width:900px){
+.banner h2 {
+    font-size:20pt;
+    top:3%;
+    left:5%;  
+}
+.banner p {
+    font-size:10pt;
+    width:50%;
+    top:20%;
+    left:5%;  
+}
+.banner .button {
+    top:40%;
+    left:auto;
+    right:5%;
+    font-size:90%;
+    padding:10px 30px;
+    display:table;
+}
 }
 
 
